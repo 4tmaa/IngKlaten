@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %} Ubah Data Tempat Kuliner {% endblock %}
+{% block content %}
+<div class="container pt-5 mt-5">
+    <h3 class="box-title">Ubah Data Kuliner</h3>
+    <form action="{{ url_for('proses_ubahKuliner') }}" method="POST">
+        <div class="form-group">
+            <label>Nama Tempat</label>
+            <input type="hidden" name="id" value="{{ hasil[0] }}">
+            <input
+                type="text"
+                name="tempat_kuliner"
+                class="form-control"
+                placeholder="Ketik nama tempat"
+                value="{{ hasil[1] }}"
+            />
+        </div>
+        <div class="form-group">
+            <label>Lokasi</label>
+            <input
+                type="text"
+                name="lokasi"
+                class="form-control"
+                placeholder="Ketik lokasi"
+                value="{{ hasil[2] }}"
+            />
+        </div>
+        <div class="form-group">
+            <label>Tema</label>
+            <input
+                type="text"
+                name="tema"
+                class="form-control"
+                placeholder="Masukkan tema"
+                value="{{ hasil[3] }}"
+            />
+        </div>
+        <div class="form-group">
+            <label>Menu Andalan</label>
+            <input
+                type="text"
+                name="status"
+                class="form-control"
+                placeholder="Ketik Menu"
+                value="{{ hasil[4] }}"
+            />
+        </div>
+        <div class="form-group">
+            <label>Foto</label>
+            <input
+                type="text"
+                name="foto"
+                class="form-control"
+                placeholder="Masukkan URL foto"
+                value="{{ hasil[5] }}"
+            />
+        </div>
+        <div class="form-group">
+            <label>Ulasan</label>
+            <input
+                type="text"
+                name="ulasan"
+                class="form-control"
+                placeholder="Masukkan ulasan"
+                value="{{ hasil[6] }}"
+            />
+        </div>
+        <div class="form-group">
+            <label>Fasilitas</label>
+            <textarea
+                name="fasilitas"
+                class="form-control"
+                placeholder="Masukkan fasilitas"
+            >{{ hasil[7] }}</textarea>
+        </div>
+        <div class="form-group">
+            <label>Deskripsi</label>
+            <textarea
+                name="deskripsi"
+                class="form-control"
+                placeholder="Masukkan deskripsi"
+            >{{ hasil[8] }}</textarea>
+        </div>
+        <div class="box-footer">
+            <a href="{{ url_for('kuliner') }}" class="btn btn-danger">Cancel</a>
+            <button type="submit" class="btn btn-primary pull-right">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

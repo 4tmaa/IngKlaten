@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}
+Hubungi Kami
+{% endblock %}
+
+{% block content %}
+<main class="container py-5 kontak" style="margin-top: 60px; background-color: #121212; color: #ffffff;">
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="p-4 rounded shadow-sm" style="background-color: #1f1f1f; color: #ffffff;">
+        <h2 class="h4 fw-bold mb-3">Kontak Kami!</h2>
+        <p class="mb-3">Hubungi kami dan kami akan membantu Anda dengan apa pun yang Anda butuhkan.</p>
+        <p>
+          Senin - Kamis: 08.00 - 18.00 (WIB)<br/>
+          Jumat: 08.00 - 17.00 (WIB)<br/>
+          CHAT ONLY!!!
+        </p>
+        <p>
+          Afif Megantoro:<br/>
+          <a class="text-primary" href="tel:+62 812-2569-6722">+62 812-2569-6722</a>
+        </p>
+        <p class="mt-3">
+          Diky Mulya Atmaja:<br/>
+          <a class="text-primary" href="tel:+62 896-3635-8234">+62 896-3635-8234</a>
+        </p>
+        <p>
+          Muhamad Iqbal Pratama Putra :<br/>
+          <a class="text-primary" href="tel:+62 853-8828-7099">+62 853-8828-7099</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="p-4 rounded shadow-sm" style="background-color: #1f1f1f; color: #ffffff;">
+        <h2 class="h4 fw-bold mb-3">Atau email kami!</h2>
+        <p class="mb-3">Untuk respons tercepat, harap hubungi kami selama jam kerja.</p>
+        <p>
+          Afif Megantoro:<br/>
+          <a class="text-primary" href="mailto:afifmegantoro80@students.amikom.ac.id">afifmegantoro80@students.amikom.ac.id</a>
+        </p>
+        <p>
+          Diky Mulya Atmaja<br/>
+          <a class="text-primary" href="mailto:dikymulya@students.amikom.ac.id">dikymulya@students.amikom.ac.id</a>
+        </p>
+        <p>
+          Muhamad Iqbal Pratama Putra:<br/>
+          <a class="text-primary" href="mailto:muhamadiqbal@students.amikom.ac.id">muhamadiqbal@students.amikom.ac.id</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="p-4 rounded shadow-sm" style="background-color: #1f1f1f; color: #ffffff;">
+        <h2 class="h4 fw-bold mb-3">Tidak sabar? Kirim catatan sekarang.</h2>
+        <p class="mb-3">Punya pertanyaan singkat? Isi formulir ini. Jika Anda perlu menyertakan gambar atau file, harap gunakan salah satu email yang tertera di sebelah kiri.</p>
+        <form action="/send_email" method="POST">
+          <div class="mb-3">
+            <label class="form-label" for="name">Nama Lengkap</label>
+            <input class="form-control" id="name" name="name" type="text" required style="background-color: #2c2c2c; color: #ffffff;"/>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="email">E-Mail</label>
+            <input class="form-control" id="email" name="email" type="email" required style="background-color: #2c2c2c; color: #ffffff;"/>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="phone">Telepon</label>
+            <input class="form-control" id="phone" name="phone" type="tel" style="background-color: #2c2c2c; color: #ffffff;"/>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="subject">Subjek</label>
+            <input class="form-control" id="subject" name="subject" type="text" required style="background-color: #2c2c2c; color: #ffffff;"/>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="message">Pesan</label>
+            <textarea class="form-control" id="message" name="message" rows="4" required style="background-color: #2c2c2c; color: #ffffff;"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Kirim</button>
+        </form>        
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

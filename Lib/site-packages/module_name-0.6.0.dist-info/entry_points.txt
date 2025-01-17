@@ -1,0 +1,2 @@
+[console_scripts]
+py-module-name = module_name.cli:main

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %} Tambah Destinasi Kuliner {% endblock %}
+{% block content %}
+<div class="container pt-5 mt-5">
+    <h3 class="box-title">Tambah Data Destinasi Kuliner</h3>
+    <form action="{{url_for('proses_tambahKuliner')}}" method="post">
+      <div class="form-group">
+        <label>Nama Tempat</label>
+        <input
+        type="text"
+        name="tempat_kuliner"
+        class="form-control"
+        placeholder="Ketik nama tempat"
+        required />
+      </div>
+      <div class="form-group">
+        <label>Lokasi</label>
+        <input
+          type="text"
+          name="lokasi"
+          class="form-control"
+          placeholder="Ketik lokasi"
+          required />
+      </div>
+      <div class="form-group">
+        <label>Tema</label>
+        <input
+          type="text"
+          name="tema"
+          class="form-control"
+          placeholder="Ketik tema"
+          required />
+      </div>
+      <div class="form-group">
+        <label>Menu Andalan</label>
+        <input
+          type="text"
+          name="status"
+          class="form-control"
+          placeholder="Ketik menu andalan"
+          required />
+      </div>
+      <div class="form-group">
+        <label>URL Foto</label>
+        <input
+          type="url"
+          name="foto"
+          class="form-control"
+          placeholder="Masukkan URL foto"
+          required />
+      </div>
+      <div class="form-group">
+        <label>Ulasan</label>
+        <input
+          type="text"
+          name="ulasan"
+          class="form-control"
+          placeholder="Ketik ulasan (contoh: 4,5 (100 ulasan))"
+          required />
+      </div>
+      <div class="form-group">
+        <label>Fasilitas</label>
+        <textarea
+          name="fasilitas"
+          class="form-control"
+          rows="3"
+          placeholder="Daftar fasilitas, pisahkan dengan koma"
+          required></textarea>
+      </div>
+      <div class="form-group">
+        <label>Deskripsi</label>
+        <textarea
+          name="deskripsi"
+          class="form-control"
+          rows="5"
+          placeholder="Masukkan deskripsi tempat kuliner"
+          required></textarea>
+      </div>
+      <div class="box-footer">
+        <a href="{{url_for('kuliner')}}" class="btn btn-danger">Cancel</a>
+        <button type="submit" class="btn btn-primary pull-right">Submit</button>
+      </div>
+    </form>
+</div>
+{% endblock %}

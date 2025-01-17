@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+Landing Page
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid banner bg-dark text-light">
+        <div class="container text-center">
+            <h3 class="display-6 fw-bold text-shadow">Selamat Datang <span class="text-warning">ing</span>Klaten!</h3>
+            <p class="mt-4 text-shadow">Panduan lengkap untuk menjelajahi pesona wisata Kota Klaten! Temukan informasi tentang destinasi terbaik, 
+               dari kemegahan candi bersejarah, keindahan umbul-umbul alami, hingga kuliner khas yang menggugah selera. 
+               <strong><span class="text-warning">ing</span>Klaten!</strong> hadir untuk membantu Anda merencanakan perjalanan yang tak terlupakan, mengenal budaya lokal, 
+               dan menikmati keindahan alam Klaten. Jelajahi Klaten lebih dekat bersama kami!</p>
+            <a href="{{ url_for('layanan') }}">
+                <button type="button" class="btn btn-warning btn-lg mt-3 shadow">Cek Layanan</button>
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %} Kuliner {% endblock %}
+{% block content %}
+<div class="container" style="margin-top: 100px;">
+  {% if session['role'] == 'admin' %}
+    <a href="{{ url_for('tambahKuliner') }}" class="btn btn-primary custom-btn">Tambah</a>
+  {% endif %}
+
+  {% for row in sg %}
+  <div class="row align-items-start mt-5">
+    <!-- Kolom Foto -->
+    <div class="col-md-6">
+      <div class="map-container text-center">
+        <h3 class="text-light">{{ row[1] }}</h3>
+        <img alt="Foto {{ row[1] }}" class="img-fluid rounded shadow"
+             src="{{ row[5] }}"
+             style="max-height: 300px; object-fit: cover;" />
+      </div>
+    </div>
+
+    <!-- Kolom Informasi dengan Jarak -->
+    <div class="col-md-6 mt-4">
+      <!-- Kartu Ulasan -->
+      <div class="card bg-dark text-light p-3 mb-4 shadow-sm rounded">
+        <h5><i class="fas fa-star text-warning me-2"></i>Ulasan</h5>
+        <p class="rating text-muted">{{ row[6] }}</p>
+      </div>
+
+      <!-- Kartu Fasilitas -->
+      <div class="card bg-dark text-light p-3 mb-4 shadow-sm rounded">
+        <h5><i class="fas fa-tools text-primary me-2"></i>Fasilitas</h5>
+        <ul class="list-unstyled">
+          {% for fasilitas in row[7].split(", ") %}
+            <li><i class="fas fa-check-circle text-success me-2"></i>{{ fasilitas }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deskripsi Lokasi -->
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-start mb-3">
+        <a href="https://www.google.com/maps/search/{{ row[1] | urlencode }}" target="_blank" class="btn btn-outline-light me-2">
+          <i class="fas fa-route"></i> Rute
+        </a>
+        <button id="shareButton{{ row[1] }}" class="btn btn-outline-light">
+          <i class="fas fa-share"></i> Bagikan
+        </button>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const shareButton = document.getElementById('shareButton{{ row[1] }}');
+            shareButton.addEventListener('click', async () => {
+              if (navigator.share) {
+                try {
+                  await navigator.share({
+                    title: '{{ row[1] }}',
+                    url: `https://gonzz.pythonanywhere.com/kuliner {{ row[2] }}`
+                  });
+                  alert('Konten berhasil dibagikan!');
+                } catch (error) {
+                  console.error('Gagal membagikan:', error);
+                }
+              } else {
+                alert('Fitur berbagi tidak didukung di browser ini.');
+              }
+            });
+          });
+        </script>
+      </div>
+      <div class="card bg-dark text-light p-3 shadow-sm rounded">
+        <h5><i class="fas fa-utensils text-danger me-2"></i>Menu Andalan</h5>
+        <p>{{ row[4] }}</p>
+        <h5><i class="fas fa-tag text-primary me-2"></i>Tema</h5>
+        <p>{{ row[3] }}</p>
+        <h5><i class="fas fa-map-marker-alt text-danger me-2"></i>Lokasi</h5>
+        <p>{{ row[2] }}</p>
+        <h5><i class="fas fa-info-circle text-secondary me-2"></i>Tentang</h5>
+        <p>{{ row[8] }}</p>
+
+        <!-- Admin Aksi -->
+        {% if session['role'] == 'admin' %}
+          <div class="d-flex justify-content-start mt-3">
+            <a href="/ubahKuliner/{{ row[0] }}" class="btn btn-warning me-2 custom-btn">
+              <i class="fas fa-edit"></i> Ubah
+            </a>
+            <a href="/hapusKuliner/{{ row[0] }}"
+               class="btn btn-danger custom-btn"
+               onclick="return confirm('Yakin akan dihapus {{ row[1] }} ?')">
+              <i class="fas fa-trash"></i> Hapus
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

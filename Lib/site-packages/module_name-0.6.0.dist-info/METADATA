@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: module-name
+Version: 0.6.0
+Summary: Simple Module to resolve module namespace
+Home-page: https://github.com/dalejung/module_name
+Download-URL: https://github.com/dalejung/module_name/tarball/0.6.0
+Author: Dale Jung
+Author-email: dale@dalejung.com
+License: MIT
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+
+module_name
+===========
+
+Simple module to make it easy to run python files with `-m` flag.
+
+The benefits of running with `-m` is that your relative imports will work.
+Running a python file as a script doesn't understand that it is part of a
+package.
+
+```
+usage: py-module-name [-h] [-f] [-d] path
+
+positional arguments:
+  path         path to python file
+
+optional arguments:
+  -h, --help   show this help message and exit
+  -f, --flag   Will output -m flag if path is importable
+  -d, --debug  Debug
+```
+
+## Examples
+
+```
+> py-module-name module_name/resolve.py
+module_name.resolve
+
+> py-module-name -f module_name/resolve.py
+-m 'module_name.resolve'
+
+> py-module-name -f /tmp/not_package/standalone.py
+'/tmp/not_package/standalone.py'
+```
+
+The `-f` flag is useful for use with scripting. I use it from my `.vimrc` to
+run files I am editing.
+
+## .vimrc
+```
+autocmd FileType python map <buffer> <S-r> :w<CR>:!tmux send-keys -t :.{bottom-right} "\%time \%run `py-module-name -f %:p`" enter<CR><CR>
+```

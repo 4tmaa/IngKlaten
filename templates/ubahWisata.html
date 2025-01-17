@@ -1,0 +1,112 @@
+{% extends 'base.html' %} 
+{% block title %} Ubah Data Tempat Wisata {% endblock %} 
+{% block content %}
+<div class="container pt-5 mt-5">
+  <h3 class="box-title">Ubah Data Wisata</h3>
+  <form action="{{url_for('proses_ubahWisata')}}" method="POST">
+    {% for row in hasil %}
+    <div class="form-group">
+      <label>Nama Tempat</label>
+      <input type="hidden" name="id" value="{{ row.0 }}">
+      <input
+        type="text"
+        name="nama_tempat"
+        class="form-control"
+        placeholder="Ketik nama tempat"
+        value="{{ row.1 }}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Lokasi</label>
+      <input
+        type="text"
+        name="lokasi"
+        class="form-control"
+        placeholder="Ketik lokasi"
+        value="{{ row.2 }}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Tiket</label>
+      <input
+        type="number"
+        name="tiket"
+        class="form-control"
+        placeholder="Ketik Harga Tiket"
+        value="{{ row.3 }}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Jam Buka</label>
+      <input
+        type="time"
+        name="jam_buka"
+        class="form-control"
+        value="{{ row.4 }}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Jam Tutup</label>
+      <input
+        type="time"
+        name="jam_tutup"
+        class="form-control"
+        value="{{ row.5 }}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Foto (URL)</label>
+      <input
+        type="url"
+        name="foto"
+        class="form-control"
+        placeholder="Masukkan URL foto"
+        value="{{ row.6 }}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Ulasan</label>
+      <input
+        type="text"
+        name="ulasan"
+        class="form-control"
+        placeholder="Contoh: 4,6 (10.000 ulasan)"
+        value="{{ row.7 }}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Fasilitas</label>
+      <input
+        type="text"
+        name="fasilitas"
+        class="form-control"
+        placeholder="Pisahkan dengan koma, contoh: Kolam renang, Tempat istirahat"
+        value="{{ row.8 }}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Deskripsi</label>
+      <textarea
+        name="deskripsi"
+        class="form-control"
+        placeholder="Tulis deskripsi tempat wisata"
+        rows="5"
+        required
+      >{{ row.9 }}</textarea>
+    </div>
+    {% endfor %}
+    <div class="box-footer">
+      <a href="{{url_for('tempat_wisata')}}" class="btn btn-danger">Cancel</a>
+      <button type="submit" class="btn btn-primary pull-right">Submit</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

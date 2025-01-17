@@ -1,0 +1,187 @@
+.banner {
+  font-family: Montserrat, sans-serif;
+  background: url('https://images.alphacoders.com/738/738037.jpg') no-repeat center center;
+  background-size: cover;
+  padding-top: 30%;
+  padding-bottom: 15%;
+}
+
+.text-shadow {
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+
+.lingkaran {
+  display: inline-block;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  color: #fff;
+  background-color: #333;
+}
+
+.lingkaran i {
+  position: relative;
+  top: 30px;
+}
+
+.crop-img {
+  object-fit: cover;
+}
+
+.tim img {
+  width: 250px;
+  border: 10px solid #444;
+}
+
+a.social {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  border-radius: 50px;
+  background-color: #444;
+  line-height: 40px;
+}
+
+.client img {
+  height: auto;
+  max-height: 50px;
+}
+
+.kontak {
+  background: url('https://images.hdqwalls.com/download/black-aesthetic-mountains-4k-9k-1366x768.jpg');
+  padding-top: 20%;
+  padding-bottom: 20%;
+  background-size: cover;
+  background-color: #1e1e1e;
+}
+
+.layanan {
+  background: url('https://images.hdqwalls.com/download/black-aesthetic-mountains-4k-9k-1366x768.jpg');
+  background-size: cover;
+  padding-top: 5%;
+  padding-bottom: 10%;
+  background-color: #1e1e1e;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+footer {
+  margin-top: auto;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+.container {
+  flex: 1;
+}
+
+/* Responsive tweaks for better viewing on smaller screens */
+@media (max-width: 768px) {
+  .gallery-grid {
+      gap: 10px;
+  }
+}
+
+.card {
+  margin-top: 20px; /* Tambahkan jarak antar card */
+}
+
+/* Dark Mode for Login Page */
+.login-page {
+  /* Background container */
+  .login-container {
+      background: url('https://a-static.besthdwallpaper.com/night-scenery-forest-wallpaper-2560x1600-80900_7.jpg');
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 5%;
+  }
+
+  /* Login card with glass effect */
+  .login-card {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+  }
+
+  /* Close button */
+  .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: #ffffff;
+      cursor: pointer;
+  }
+
+  /* Input container for icons */
+  .input-container {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      padding: 5px 10px;
+  }
+
+  .input-container i {
+      color: #ffffff;
+      margin-right: 10px;
+  }
+
+  .input-container input {
+      border: none;
+      background: transparent;
+      outline: none;
+      color: #ffffff;
+      width: 100%;
+  }
+
+  /* Form elements */
+  .form-group label {
+      color: #ffffff;
+  }
+
+  .btn-primary {
+      background-color: #00509e;
+      border-color: #00509e;
+  }
+
+  .btn-primary:hover {
+      background-color: #00376b;
+      border-color: #00376b;
+  }
+
+  .text-secondary {
+      color: #aaaaaa;
+  }
+
+  .text-primary {
+      color: #00509e;
+  }
+
+  .text-primary:hover {
+      color: #00376b;
+  }
+}

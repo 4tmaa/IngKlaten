@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %} Penginapan {% endblock %}
+{% block content %}
+<div class="container" style="margin-top: 100px;">
+  {% if session['role'] == 'admin' %}
+    <a href="{{ url_for('tambah') }}" class="btn btn-primary custom-btn">Tambah</a>
+  {% endif %}
+
+  {% for row in pg %}
+  <div class="row align-items-start mt-5">
+    <!-- Kolom Foto -->
+    <div class="col-md-6">
+      <div class="map-container text-center">
+        <h3 class="text-light">{{ row[1] }}</h3>
+        <!-- Foto Penginapan -->
+        {% if row[5] %}
+          <img alt="Foto {{ row[1] }}" class="img-fluid rounded shadow"
+               src="{{ row[5] }}"
+               style="max-height: 300px; object-fit: cover;" />
+        {% else %}
+          <img alt="Foto {{ row[1] }}" class="img-fluid rounded shadow"
+               src="default-image.jpg"
+               style="max-height: 300px; object-fit: cover;" />
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Kolom Informasi dengan Jarak -->
+    <div class="col-md-6 mt-4">
+      <!-- Kartu Ulasan -->
+      <div class="card bg-dark text-light p-3 mb-4 shadow-sm rounded">
+        <h5><i class="fas fa-star text-warning me-2"></i>Ulasan</h5>
+        <p class="rating text-muted">{{ row[2] if row[2] else "Belum ada ulasan" }}</p>
+      </div>
+
+      <!-- Kartu Fasilitas -->
+      <div class="card bg-dark text-light p-3 mb-4 shadow-sm rounded">
+        <h5><i class="fas fa-tools text-primary me-2"></i>Fasilitas</h5>
+        <ul class="list-unstyled">
+          {% if row[6] %}
+            {% for fasilitas in row[6].split(',') %}
+              <li><i class="fas fa-check-circle text-success me-2"></i>{{ fasilitas.strip() }}</li>
+            {% endfor %}
+          {% else %}
+            <li><i class="fas fa-times-circle text-danger me-2"></i>Fasilitas belum tersedia</li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-start mb-3">
+        <a href="https://www.google.com/maps/search/{{ row[1] | urlencode }}" target="_blank" class="btn btn-outline-light me-2">
+          <i class="fas fa-route"></i> Rute
+        </a>
+        <button id="shareButton{{ row[1] }}" class="btn btn-outline-light">
+          <i class="fas fa-share"></i> Bagikan
+        </button>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const shareButton = document.getElementById('shareButton{{ row[1] }}');
+            shareButton.addEventListener('click', async () => {
+              if (navigator.share) {
+                try {
+                  await navigator.share({
+                    title: '{{ row[1] }}',
+                    url: `https://gonzz.pythonanywhere.com/penginapan/{{ row[1] }}`
+                  });
+                  alert('Konten berhasil dibagikan!');
+                } catch (error) {
+                  console.error('Gagal membagikan:', error);
+                }
+              } else {
+                alert('Fitur berbagi tidak didukung di browser ini.');
+              }
+            });
+          });
+        </script>
+      </div>
+
+      <!-- Tentang dan Informasi Lokasi -->
+      <div class="card bg-dark text-light p-3 mb-4 shadow-sm rounded">
+        <h5><i class="fas fa-tag text-success me-2"></i>Mulai Dari</h5>
+        <p>Rp {{ row[4] }}</p>
+        <h5><i class="fas fa-map-marker-alt text-danger me-2"></i>Lokasi</h5>
+        <p>{{ row[3] }}</p>
+        <h5><i class="fas fa-info-circle text-secondary me-2"></i>Tentang</h5>
+        <p>{{ row[7] if row[7] else "Deskripsi belum tersedia" }}</p>
+      </div>
+
+      <!-- Tindakan Admin -->
+      {% if session['role'] == 'admin' %}
+        <div class="d-flex justify-content-start mt-3">
+          <a href="/ubah/{{ row[0] }}" class="btn btn-warning me-2 custom-btn">
+            <i class="fas fa-edit"></i> Ubah
+          </a>
+          <a href="/hapus/{{ row[0] }}"
+              class="btn btn-danger custom-btn"
+              onclick="return confirm('Yakin akan dihapus {{ row[1] }} ?')">
+            <i class="fas fa-trash"></i> Hapus
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

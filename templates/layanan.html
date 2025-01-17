@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+Layanan
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid layanan" style="margin-top: 60px;">
+    <div class="container text-center">
+        <h2 class="display-3" id="layanan"><b>Rekomendasi</b></h2>
+        <p>
+            Kami merekomendasikan beberapa fasilitas yang memadahi agar perjalanan
+            kalian terasa menyenangkan dan tak membosankan.
+        </p>
+        <div class="row pt-4">
+            <!-- Penginapan -->
+            <div class="col-md-4">
+                <a class="nav-link" href="{{ url_for('penginapan') }}">
+                    <span class="lingkaran">
+                        <i class="fa-solid fa-hotel fa-5x"></i>
+                    </span>
+                    <h3 class="mt-3">Penginapan</h3>
+                </a>
+            </div>
+
+            <!-- Tempat Wisata -->
+            <div class="col-md-4">
+                <a class="nav-link" href="{{ url_for('tempat_wisata') }}">
+                    <span class="lingkaran">
+                        <i class="fa-solid fa-map-marker-alt fa-5x"></i>
+                    </span>
+                    <h3 class="mt-3">Tempat Wisata</h3>
+                </a>
+            </div>
+
+            <!-- Kuliner -->
+            <div class="col-md-4">
+                <a class="nav-link" href="{{ url_for('kuliner') }}">
+                    <span class="lingkaran">
+                        <i class="fa-solid fa-utensils fa-5x"></i>
+                    </span>
+                    <h3 class="mt-3">Kuliner</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

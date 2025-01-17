@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+<div class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <button class="close-btn">&times;</button>
+            <h3 class="text-center mb-4">Login</h3>
+            <form method="POST" action="/login">
+                <div class="form-group mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <div class="input-container">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-container">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-check d-flex justify-content-between mb-3">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="remember"> Remember me
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+            <p class="text-center mt-4">Don't have an account? <a href="{{ url_for('register') }}" class="text-primary">Register</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

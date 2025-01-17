@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %} Ubah Data Penginapan {% endblock %}
+{% block content %}
+<div class="container pt-5 mt-5">
+    <h3 class="box-title">Ubah Data Penginapan</h3>
+    <form action="{{ url_for('proses_ubah') }}" method="post">
+      {% for row in hasil %}
+      <div class="form-group">
+        <label>Nama Lokasi</label>
+        <input type="hidden" name="id" value="{{ row[0] }}">
+        <input type="text" name="nama_lokasi" class="form-control" value="{{ row[1] }}" required />
+      </div>
+      <div class="form-group">
+        <label>Lokasi</label>
+        <input type="text" name="lokasi" class="form-control" value="{{ row[3] }}" required />
+      </div>
+      <div class="form-group">
+        <label>Harga</label>
+        <input type="number" name="harga" class="form-control" value="{{ row[4] }}" required />
+      </div>
+      <div class="form-group">
+        <label>Ulasan</label>
+        <input type="text" name="ulasan" class="form-control" value="{{ row[2] }}" />
+      </div>
+      <div class="form-group">
+        <label>Foto (URL)</label>
+        <input type="text" name="foto" class="form-control" value="{{ row[5] }}" />
+      </div>
+      <div class="form-group">
+        <label>Fasilitas</label>
+        <input type="text" name="fasilitas" class="form-control" value="{{ row[6] }}" />
+      </div>
+      <div class="form-group">
+        <label>Deskripsi</label>
+        <textarea name="deskripsi" class="form-control">{{ row[7] }}</textarea>
+      </div>
+      {% endfor %}
+      <div class="box-footer">
+        <a href="{{ url_for('penginapan') }}" class="btn btn-danger">Cancel</a>
+        <button type="submit" class="btn btn-primary pull-right">Submit</button>
+      </div>
+    </form>
+</div>
+{% endblock %}
